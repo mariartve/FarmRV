@@ -40,7 +40,7 @@ public class TomatoTake : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, grabDistance))
         {
-            if (hit.collider.gameObject.CompareTag("Apple"))
+            if (hit.collider.gameObject.CompareTag("Apple") || hit.collider.gameObject.CompareTag("Seed"))
             {
                 grabbedObject = hit.collider.gameObject;
                 Rigidbody rb = grabbedObject.GetComponent<Rigidbody>();
@@ -71,7 +71,7 @@ public class TomatoTake : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Apple"))
+        if (collision.gameObject.CompareTag("Apple") || collision.gameObject.CompareTag("Seed"))
         {
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
             if (rb == null)
