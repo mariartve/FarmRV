@@ -98,4 +98,5 @@ public class GrowthModified : MonoBehaviour
         }
         currentPlantStages.Clear();
     }
+
 }
