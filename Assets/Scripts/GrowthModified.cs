@@ -10,8 +10,8 @@ public class GrowthModified : MonoBehaviour
     public GameObject fruitPlantPrefab;
     public GameObject rottenPlantPrefab;
 
-    public int rows = 5; // Número de filas
-    public int columns = 5; // Número de columnas
+    public int rows = 5; // NÃºmero de filas
+    public int columns = 5; // NÃºmero de columnas
     public float spacing = 2.0f; // Espaciado entre plantas
 
     private List<GameObject> currentPlantStages = new List<GameObject>();
@@ -20,7 +20,7 @@ public class GrowthModified : MonoBehaviour
 
     void Start()
     {
-        // Calcular el inicio de la posición para centrar la cuadrícula
+        // Calcular el inicio de la posiciÃ³n para centrar la cuadrÃ­cula
         Vector3 startPosition = new Vector3(
             transform.position.x - (columns - 1) * spacing / 2,
             transform.position.y,
@@ -68,9 +68,9 @@ public class GrowthModified : MonoBehaviour
         ChangeAllPlantStages(fruitPlantPrefab);
         isFruitStage = true; // Cambiar el estado a fruitPlant
 
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(60);
         ChangeAllPlantStages(rottenPlantPrefab);
-        isFruitStage = false; // Resetear el estado después de fruitPlant
+        isFruitStage = false; // Resetear el estado despuÃ©s de fruitPlant
     }
 
     void ChangeAllPlantStages(GameObject newStagePrefab)
@@ -81,6 +81,13 @@ public class GrowthModified : MonoBehaviour
             {
                 Vector3 position = currentPlantStages[i].transform.position;
                 Quaternion rotation = currentPlantStages[i].transform.rotation;
+
+                // Rotar 180 grados en el eje Z para babyPlantPrefab y youngPlantPrefab
+                if (newStagePrefab == babyPlantPrefab || newStagePrefab == youngPlantPrefab)
+                {
+                    rotation *= Quaternion.Euler(0, 0, 180);
+                }
+
                 Destroy(currentPlantStages[i]);
                 currentPlantStages[i] = Instantiate(newStagePrefab, position, rotation);
             }
@@ -98,5 +105,4 @@ public class GrowthModified : MonoBehaviour
         }
         currentPlantStages.Clear();
     }
-
 }

@@ -10,7 +10,7 @@ public class Movimiento : MonoBehaviour
     public float x, y;
 
     private GameObject objetoRecogido;
-    public Transform lugarRecogida;  // Lugar donde se mantendrá el objeto recogido
+    public Transform lugarRecogida;  // Lugar donde se mantendrï¿½ el objeto recogido
 
     // Start is called before the first frame update
     void Start()
